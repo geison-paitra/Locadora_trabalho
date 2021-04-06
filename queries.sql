@@ -32,15 +32,19 @@ VALUES (NULL,6,'DMC-12');
 
 /*insert de carro*/
 INSERT INTO carro (idcarro, id_modelo, ano, cor, descricao, observacoes)
-VALUES (NULL,1,2019,'Vermelho','Duas portas, motor V8',NULL);
+VALUES (NULL, 1, 2019,'Vermelho','Duas portas, motor V8', NULL);
 INSERT INTO carro (idcarro, id_modelo, ano, cor, descricao, observacoes)
-VALUES (NULL,4,2018,'Preto','Duas portas, com spoilers e detalhes em azul','Atinge 407km/h');
+VALUES (NULL, 4, 2018,'Preto','Duas portas, com spoilers e detalhes em azul','Atinge 407km/h');
 INSERT INTO carro (idcarro, id_modelo, ano, cor, descricao, observacoes)
-VALUES (NULL,1,2019,'Laranja','Duas portas, motor V12','De 0a 100 em 3 seg');
+VALUES (NULL,2, 2019,'Laranja','Duas portas, motor V12','De 0a 100 em 3 seg');
 INSERT INTO carro (idcarro, id_modelo, ano, cor, descricao, observacoes)
-VALUES (NULL,4,2018,'Amarelo','Duas portas, motor v8',NULL);
+VALUES (NULL,3, 2018,'Amarelo','Duas portas, motor v8', NULL);
 INSERT INTO carro (idcarro, id_modelo, ano, cor, descricao, observacoes)
-VALUES (NULL,6,1985,'Prata','Duas portas, motor PRV V6','Precisa de 1.21 Gigawatts');
+VALUES (NULL,6, 1985,'Prata','Duas portas, motor PRV V6','Precisa de 1.21 Gigawatts');
+INSERT INTO carro (idcarro, id_modelo, ano, cor, descricao, observacoes)
+VALUES (NULL, 5, 1974,'Preto','Duas portas, motor de maquina de costura','Carro em estado ruim');
+INSERT INTO carro (idcarro, id_modelo, ano, cor, descricao, observacoes)
+VALUES (NULL, 5, 1972,'Bege','Duas portas, motor de maquina de costura','Carro em estado ruim');
 
 /*insert cliente */
 INSERT INTO cliente (idcliente, nome, email, senha) 
@@ -64,11 +68,13 @@ VALUES (NULL, 'Marshall Eriksen', 'marshmallow@outlook.com', 'lilypad');
 INSERT INTO locacao (idlocacao, id_carro, id_cliente, data_retirada, data_devolucao, valor, observacoes)
 VALUES (NULL, 1, 6, '2015-06-05', '2015-06-06', 2200, 'Cliente pagou adiantado');
 INSERT INTO locacao (idlocacao, id_carro, id_cliente, data_retirada, data_devolucao, valor, observacoes)
-VALUES (NULL,);
+VALUES (NULL, 5, 1, '1985-11-12', '1955-11-12', 100, NULL);
 INSERT INTO locacao (idlocacao, id_carro, id_cliente, data_retirada, data_devolucao, valor, observacoes)
-VALUES (NULL,);
+VALUES (NULL, 4, 7, '2005-9-19', '2014-03-31', 0, 'Aluguel pago por Barney Stinson');
 INSERT INTO locacao (idlocacao, id_carro, id_cliente, data_retirada, data_devolucao, valor, observacoes)
-VALUES (NULL,);
+VALUES (NULL, 3, 5, '2020-01-01', '2020-02-01', 1800.75, 'Desconto para clientes em parceria com a Twitch.tv');
+INSERT INTO locacao (idlocacao, id_carro, id_cliente, data_retirada, data_devolucao, valor, observacoes)
+VALUES (NULL, 6, 4, '2021-03-01', '2021-04-01', 50, 'Carro sera leiloado ao fim do aluguel');
 
 /*--------------*/
 /*UPDATE*/
@@ -81,9 +87,26 @@ UPDATE marca
 SET descricao = 'Volksvwagen'
 WHERE descricao = 'Volksvagen';
 
+UPDATE locacao
+SET observacoes = 'O cliente sumiu'
+WHERE id_cliente = '1';
+
 /*--------------------*/
 /* DELETE */
+DELETE FROM locacao
+WHERE id_cliente = 4;
+
+DELETE FROM carro
+WHERE id_modelo = 5;
+
+DELETE FROM modelo
+WHERE idmodelo = 5;
+
+/*-------------------*/
+/*Selects e Joins*/
+
+
 
 
 /*mudar date*/
-Select *, DATE_FORMAT(dia, '%d/%m/%y') AS data_formatada from timetest;
+Select DATE_FORMAT(dia, '%d/%m/%y') AS data_formatada from timetest;
