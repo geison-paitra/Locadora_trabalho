@@ -105,8 +105,39 @@ WHERE idmodelo = 5;
 /*-------------------*/
 /*Selects e Joins*/
 
+SELECT nome, email
+FROM cliente;
 
+SELECT descricao as Marcas
+FROM marca;
+
+SELECT a.descricao AS Marca, b.descricao AS Modelo
+FROM marca a
+    INNER JOIN modelo b
+    ON a.idmarca = b.id_marca
+WHERE b.descricao IS NOT NULL;
+
+SELECT a.descricao AS modelo, b.ano , b.cor 
+FROM modelo a
+    INNER JOIN carro b 
+    ON a.idmodelo = b.id_modelo;
+
+SELECT c.nome AS cliente, a.ano, l.valor
+FROM locacao l
+    INNER JOIN cliente c
+    ON c.idcliente = l.id_cliente
+    INNER JOIN carro a
+    ON a.idcarro = l.id_carro;
+
+SELECT mo.descricao as marca, ma.descricao as modelo, ca.ano , lo.data_retirada, lo.data_devolucao
+FROM locacao lo 
+    INNER JOIN carro ca
+    ON ca.idcarro = lo.id_carro
+    INNER JOIN modelo mo
+    ON mo.idmodelo = ca.id_modelo
+    INNER JOIN marca ma
+    ON ma.idmarca = mo.id_marca;
 
 
 /*mudar date*/
-Select DATE_FORMAT(dia, '%d/%m/%y') AS data_formatada from timetest;
+/* Select DATE_FORMAT(dia, '%d/%m/%y') AS data_formatada from timetest; */
