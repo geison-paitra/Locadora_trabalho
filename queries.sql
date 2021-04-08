@@ -61,8 +61,9 @@ INSERT INTO cliente (idcliente, nome, email, senha)
 VALUES (NULL, 'Barney Stinson', 'stinson_awesome@outlook.com', 'legendary');
 INSERT INTO cliente (idcliente, nome, email, senha) 
 VALUES (NULL, 'Theodore Mosby', 'ted.mosby@outlook.com', 'arquitetomosby');
-INSERT INTO cliente (idcliente, nome, email, senha) 
-VALUES (NULL, 'Marshall Eriksen', 'marshmallow@outlook.com', 'lilypad');
+
+CALL CAD_CLIENTE('Marshall Eriksen', 'marshmallow@outlook.com', 'platinas'); --procedure criada para add clientes
+
 
 /* insert locacao */
 INSERT INTO locacao (idlocacao, id_carro, id_cliente, data_retirada, data_devolucao, valor, observacoes)
@@ -148,4 +149,6 @@ FROM locacao lo
 
 /*mudar date*/
 /* Select DATE_FORMAT(dia, '%d/%m/%y') AS data_formatada from timetest; */
+
+
 

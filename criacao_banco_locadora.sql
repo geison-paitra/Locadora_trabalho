@@ -96,3 +96,28 @@ FROM locacao lo
     ON mo.idmodelo = ca.id_modelo
     INNER JOIN marca ma
     ON ma.idmarca = mo.id_marca;
+
+    
+    
+/* procedimento Armazenado */
+/* estrutura minha padrão
+
+DELIMITER $
+CREATE PROCEDURE nome (arg TIPO)
+BEGIN
+
+END
+$
+DELIMITER ;
+
+*/
+
+
+DELIMITER $
+CREATE PROCEDURE CAD_CLIENTE(p_nome VARCHAR(100), p_email VARCHAR(100), p_senha VARCHAR(20))
+BEGIN
+    INSERT INTO cliente (idcliente, nome, email, senha) 
+    VALUES (NULL, p_nome, p_email, p_senha);
+END
+$
+DELIMITER ;
