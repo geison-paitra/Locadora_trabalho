@@ -129,7 +129,13 @@ FROM locacao l
     INNER JOIN carro a
     ON a.idcarro = l.id_carro;
 
-SELECT mo.descricao as marca, ma.descricao as modelo, ca.ano , lo.data_retirada, lo.data_devolucao
+select * from v_relatorio; -- É uma join em uma view
+/*
+SELECT  mo.descricao AS marca, 
+        ma.descricao AS modelo, 
+        ca.ano, 
+        DATE_FORMAT(lo.data_retirada,'%d/%m/%Y') AS data_retirada,
+        DATE_FORMAT(lo.data_devolucao,'%d/%m/%Y') AS data_devolucao 
 FROM locacao lo 
     INNER JOIN carro ca
     ON ca.idcarro = lo.id_carro
@@ -137,7 +143,9 @@ FROM locacao lo
     ON mo.idmodelo = ca.id_modelo
     INNER JOIN marca ma
     ON ma.idmarca = mo.id_marca;
+    */
 
 
 /*mudar date*/
 /* Select DATE_FORMAT(dia, '%d/%m/%y') AS data_formatada from timetest; */
+

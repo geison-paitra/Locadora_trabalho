@@ -80,3 +80,19 @@ CREATE TABLE locacao(
     FOREIGN KEY(id_cliente)
     REFERENCES cliente(idcliente)
 );
+
+/*view amazenada*/
+
+CREATE VIEW v_relatorio AS
+SELECT  mo.descricao AS marca, 
+        ma.descricao AS modelo, 
+        ca.ano, 
+        DATE_FORMAT(lo.data_retirada,'%d/%m/%Y') AS data_retirada,
+        DATE_FORMAT(lo.data_devolucao,'%d/%m/%Y') AS data_devolucao 
+FROM locacao lo 
+    INNER JOIN carro ca
+    ON ca.idcarro = lo.id_carro
+    INNER JOIN modelo mo
+    ON mo.idmodelo = ca.id_modelo
+    INNER JOIN marca ma
+    ON ma.idmarca = mo.id_marca;
