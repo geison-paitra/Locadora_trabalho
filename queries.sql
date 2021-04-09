@@ -1,15 +1,15 @@
 /* inserts de marca*/
-INSERT INTO marca (idmarca, descricao) 
+INSERT INTO marca (idmarca, nome) 
 VALUES (NULL,'Ferrari');
-INSERT INTO marca (idmarca, descricao) 
+INSERT INTO marca (idmarca, nome) 
 VALUES (NULL,'Lamborghini');
-INSERT INTO marca (idmarca, descricao) 
+INSERT INTO marca (idmarca, nome) 
 VALUES (NULL,'McLaren');
-INSERT INTO marca (idmarca, descricao) 
+INSERT INTO marca (idmarca, nome) 
 VALUES (NULL,'Bugatti');
-INSERT INTO marca (idmarca, descricao) 
+INSERT INTO marca (idmarca, nome) 
 VALUES (NULL,'Volksvagen');
-INSERT INTO marca (idmarca, descricao) 
+INSERT INTO marca (idmarca, nome) 
 VALUES (NULL,'DeLorean');
 
 
@@ -62,7 +62,7 @@ VALUES (NULL, 'Barney Stinson', 'stinson_awesome@outlook.com', 'legendary');
 INSERT INTO cliente (idcliente, nome, email, senha) 
 VALUES (NULL, 'Theodore Mosby', 'ted.mosby@outlook.com', 'arquitetomosby');
 
-CALL CAD_CLIENTE('Marshall Eriksen', 'marshmallow@outlook.com', 'platinas'); --procedure criada para add clientes
+CALL CAD_CLIENTE('Marshall Eriksen', 'marshmallow@outlook.com', 'lilypad'); 
 
 
 /* insert locacao */
@@ -85,12 +85,21 @@ SET ano = 2020
 WHERE idcarro = 4;
 
 UPDATE marca
-SET descricao = 'Volksvwagen'
-WHERE descricao = 'Volksvagen';
+SET nome = 'Volkswagen'
+WHERE nome = 'Volksvagen';
 
 UPDATE locacao
 SET observacoes = 'O cliente sumiu'
 WHERE id_cliente = '1';
+
+UPDATE carro
+SET observacoes = '****'
+WHERE observacoes IS NULL;
+
+UPDATE cliente
+SET senha = 'WaitForIt-Legendary'
+WHERE nome = 'Barney Stinson';
+
 
 /*--------------------*/
 /* DELETE */
@@ -103,16 +112,21 @@ WHERE id_modelo = 5;
 DELETE FROM modelo
 WHERE idmodelo = 5;
 
+DELETE FROM marca
+WHERE nome = 'Volkswagen';
+
+DELETE FROM cliente
+WHERE idcliente = 4;
 /*-------------------*/
 /*Selects e Joins*/
 
 SELECT nome, email
 FROM cliente;
 
-SELECT descricao as Marcas
+SELECT nome as Marcas
 FROM marca;
 
-SELECT a.descricao AS Marca, b.descricao AS Modelo
+SELECT a.nome AS Marca, b.descricao AS Modelo
 FROM marca a
     INNER JOIN modelo b
     ON a.idmarca = b.id_marca
