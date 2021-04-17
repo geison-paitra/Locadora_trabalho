@@ -69,6 +69,7 @@ CREATE TABLE locacao (
     id_carro INT NOT NULL
 );
 
+
 /*Constraints */
 
 ALTER TABLE locacao
@@ -129,6 +130,37 @@ CREATE PROCEDURE CAD_CLIENTE(p_nome VARCHAR(100), p_email VARCHAR(100), p_senha 
 BEGIN
     INSERT INTO cliente (idcliente, nome, email, senha) 
     VALUES (NULL, p_nome, p_email, p_senha);
+END
+$
+DELIMITER ;
+
+
+
+
+
+/*trigger -- apaga modelos de uma marca ja excluida */
+
+
+/*tabela para ser usada na trigger (auditoria de cliente - apenas inserts)*/
+CREATE TABLE audit_cliente(
+    idaudit_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    idcliente INT UNIQUE NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    evento VARCHAR(6) NOT NULL,
+    usuario VARCHAR(50) NOT NULL,
+    dia DATETIME NOT NULL   
+);
+
+/*trigger*/
+DELIMITER $
+CREATE TRIGGER auditoria_cli
+AFTER INSERT ON cliente
+FOR EACH ROW 
+BEGIN
+		
+	INSERT INTO audit_cliente VALUES
+	(NULL, NEW.idcliente, NEW.nome, NEW.email, 'Insert', CURRENT_USER(), NOW());
 END
 $
 DELIMITER ;

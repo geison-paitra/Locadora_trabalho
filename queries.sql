@@ -126,16 +126,33 @@ FROM cliente;
 SELECT nome as Marcas
 FROM marca;
 
+SELECT descricao as Modelo
+FROM modelo
+WHERE idmodelo = 6;
+--
+SELECT * FROM carro
+ORDER BY ano DESC;
+
+SELECT COUNT(*) AS Quantidade_de_clientes
+FROM cliente;
+
+/* 5 joins */
 SELECT a.nome AS Marca, b.descricao AS Modelo
 FROM marca a
     INNER JOIN modelo b
     ON a.idmarca = b.id_marca
-WHERE b.descricao IS NOT NULL;
+WHERE b.descricao NOT LIKE '%usca';
 
 SELECT a.descricao AS modelo, b.ano , b.cor 
 FROM modelo a
     INNER JOIN carro b 
     ON a.idmodelo = b.id_modelo;
+
+SELECT a.nome AS Marca, b.descricao AS Modelo
+FROM marca a
+    INNER JOIN modelo b
+    ON a.idmarca = b.id_marca
+ORDER BY a.nome;
 
 SELECT c.nome AS cliente, a.ano, l.valor
 FROM locacao l
@@ -144,10 +161,10 @@ FROM locacao l
     INNER JOIN carro a
     ON a.idcarro = l.id_carro;
 
-select * from v_relatorio; -- É uma join em uma view
-/*
-SELECT  mo.descricao AS marca, 
-        ma.descricao AS modelo, 
+/*select * from v_relatorio; -- É uma join em uma view */
+
+SELECT  ma.nome AS marca, 
+        mo.descricao AS modelo, 
         ca.ano, 
         DATE_FORMAT(lo.data_retirada,'%d/%m/%Y') AS data_retirada,
         DATE_FORMAT(lo.data_devolucao,'%d/%m/%Y') AS data_devolucao 
@@ -158,7 +175,7 @@ FROM locacao lo
     ON mo.idmodelo = ca.id_modelo
     INNER JOIN marca ma
     ON ma.idmarca = mo.id_marca;
-    */
+    
 
 
 /*mudar date*/
